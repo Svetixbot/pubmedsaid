@@ -57,7 +57,7 @@ rect.parent,
 }
 
 .children:hover rect.child {
-  fill: #bbb;
+  fill: #ee9700;
 }
 
 </style>
@@ -242,7 +242,7 @@ d3.json(gen + ".json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .text(function(d) { return d._children? d.name : ""; })
+        .text(function(d) { return d.name })
         .call(text);
 
     function  populateGenDescription(d) {
