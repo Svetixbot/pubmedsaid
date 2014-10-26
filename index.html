@@ -243,7 +243,7 @@ d3.json(gen + ".json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .text(function(d) { return d._childern ? d.name : "" })
+        .text(function(d) { return d._children ? d.name : "" })
         .call(text);
 
     function  populateGenDescription(d) {
