@@ -257,13 +257,25 @@ d3.json(gen + ".json", function(root) {
           return d.name; 
         });
        d3.select("#gen_desc").selectAll("pre").remove();
-       d3.select("#gen_desc")
+       
+      d3.select("#gen_desc")
         .selectAll("pre")
         .data([d])
         .enter()
         .append("pre")
         .text(function(d) { 
           return d.description; 
+        });
+      
+      d3.select("#gen_desc").selectAll("h2").remove();
+
+      d3.select("#gen_desc")
+        .selectAll("h2")
+        .data([d])
+        .enter()
+        .append("h2")
+        .text(function(d) { 
+          return "Found " + (d.acticles ? "0" : d.articles.length) + " articles"
         });
     }
 
