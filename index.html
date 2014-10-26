@@ -223,9 +223,11 @@ d3.json(gen + ".json", function(root) {
     g.filter(function(d) { return d._children; })
         .classed("children", true)
         .on("click", transition)
+        .on("mouseover", displayName)    
 
     g.filter(function(d) { return !d._children; })
         .on("click", displayArticles)    
+        .on("mouseover", displayName)    
 
     g.selectAll(".child")
         .data(function(d) { return d._children || [d]; })
@@ -241,7 +243,7 @@ d3.json(gen + ".json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .text(function(d) { return d._children ? d.name : "" })
+        .text(function(d) { return d._childern ? d.name : "" })
         .call(text);
 
     function  populateGenDescription(d) {
@@ -271,6 +273,12 @@ d3.json(gen + ".json", function(root) {
         d3.select("#articles").call(list, d.articles);
       }
     }
+
+    function displayName(d) {
+      d3.select(".grandparent")
+      .select("text")
+        .text(d.name);
+    } 
 
     function list(ul, data) {
       var sortedData = data.sort(function(a,b){
