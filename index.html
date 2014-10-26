@@ -225,7 +225,6 @@ d3.json(gen + ".json", function(root) {
         .on("click", transition)
 
     g.filter(function(d) { return !d._children; })
-        .on("mouseover", displayArticles)    
         .on("click", displayArticles)    
 
     g.selectAll(".child")
@@ -242,7 +241,7 @@ d3.json(gen + ".json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .text(function(d) { return d.name })
+        .text(function(d) { return d._children ? d.name : "" })
         .call(text);
 
     function  populateGenDescription(d) {
