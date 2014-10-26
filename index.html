@@ -64,13 +64,28 @@ rect.parent,
 
 <div class="page-header">
   <div class="row">
-    <div class="col-md-4 col-md-offset-4 text-center">
-        <a href="/"><h1>PubMedSaid</h1></a>
+    <div class="col-md-4">
+        <ul>
+            <li>
+              <a href="?gen=ENSP00000256413"><p>ENSP00000256413</p></a>
+            </li>
+            <li>
+              <a href="?gen=ENSP00000308318"><p>ENSP00000308318</p></a>
+            </li>
+            <li>
+              <a href="?gen=ENSP00000362705"><p>ENSP00000362705</p></a>
+            </li>
+            <li>
+              <a href="?gen=ENSP00000371690"><p>ENSP00000371690</p></a>
+            </li>
+            <li>
+              <a href="?gen=ENSP00000458989"><p>ENSP00000458989</p></a>
+            </li>
+        </ul>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-      Prototype presented by Dr Fabian Buske, Quek Xiu Cheng and Kenneth Sabir
+    <div class="col-md-8 text-center">
+        <a href="/"><h1>PubMedSaid</h1></a>
+        <p>Prototype presented by Dr Fabian Buske, Quek Xiu Cheng and Kenneth Sabir</p>
     </div>
   </div>
 </div>      
@@ -138,7 +153,15 @@ grandparent.append("text")
     .attr("y", 6 - margin.top)
     .attr("dy", ".75em");
 
-d3.json("ENSP00000371690.json", function(root) {
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
+var gen = getURLParameter('gen');
+if (!gen){
+  gen = "ENSP00000362705"
+}
+d3.json(gen + ".json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
@@ -219,7 +242,7 @@ d3.json("ENSP00000371690.json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .text(function(d) { return d.name; })
+        .text(function(d) { return d._children? d.name : ""; })
         .call(text);
 
     function  populateGenDescription(d) {
